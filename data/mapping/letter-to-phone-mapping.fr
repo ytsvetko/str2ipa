@@ -1,0 +1,248 @@
+# Syntax:
+# Comments start with a pound (#) character.
+#
+# The rules have top-down precedence !!!not recursive!!!
+# Once a substring is matched and consumed other matchers won't consume it.
+# However, this substring can still be matched using .V. and .C. matchers.
+#
+# Simple case:
+#   <in_str> ||| <out_str1> <out_str2> ...
+#   The <in_str> is consumed.
+#   <out_strX> can be "Ø" - deletion.
+#
+# Special matchers - not consuming the anchor characters:
+# Suffixes:
+#   <in_str>$ ||| <out_str1> ...
+#   <in_str> will only be matched if it at the end of the word.
+#
+# Prefixes:
+#   ^<in_str> ||| <out_str1> ...
+#   <in_str> will only be matched if it at the start of the word.
+#
+# Definition of a set:
+# def <NAME> = {char1, char2, ...}
+#
+# Matching:
+#   <in_str>{VAR} ||| <out_str1> ...
+#   {VAR}<in_str> ||| <out_str1> ...
+#   <in_str> will only be matched in a presence of a character from set VAR. Only the <in_str> is consumed.
+
+def CONSONANT = bçcdfghjklmnpqrstvwxyz 
+def VOWEL = aàâeéèêioôëuyœ
+def VOCELESS = stkpf #CH ?
+
+# Suffixes 
+oent$ ||| o
+
+ent$ ||| Ø ɑ̃
+ein$ ||| ɛ̃
+obs$ ||| o
+ocs$ ||| o
+ods$ ||| o
+ogs$ ||| o
+ops$ ||| o
+ots$ ||| o
+obb$ ||| o
+odd$ ||| o
+oll$ ||| o
+opp$ ||| o
+ott$ ||| o
+oeu$ ||| o
+oes$ ||| o
+oue$ ||| u
+uin$ ||| ɥɛ̃
+ien$ ||| jɛ̃
+eun$ ||| œ̃
+aon$ ||| ɑ̃
+aen$ ||| ɑ̃
+aim$ ||| ɛ̃
+ain$ ||| ɛ̃
+
+eu$ ||| Ø
+es$ ||| Ø
+en$ ||| ɑ̃
+em$ ||| ɑ̃
+er$ ||| e
+pt$ ||| pt
+ay$ ||| ɛ
+ie$ ||| i
+bs$ ||| Ø
+cs$ ||| Ø
+ds$ ||| Ø
+gs$ ||| Ø
+ps$ ||| Ø
+ts$ ||| Ø
+bb$ ||| Ø
+dd$ ||| Ø
+ll$ ||| Ø
+pp$ ||| Ø
+tt$ ||| Ø
+ob$ ||| o
+oc$ ||| o
+od$ ||| o
+og$ ||| o
+oh$ ||| o
+ol$ ||| o
+op$ ||| o
+os$ ||| o
+ot$ ||| o
+ox$ ||| o
+oz$ ||| o
+oe$ ||| o
+ue$ ||| y
+um$ ||| œ̃
+un$ ||| œ̃
+ym$ ||| ɛ̃
+yn$ ||| ɛ̃
+om$ ||| ɔ̃
+on$ ||| ɔ̃
+im$ ||| ɛ̃
+in$ ||| ɛ̃
+et$ ||| ɛ
+an$ ||| ɑ̃
+am$ ||| ɑ̃
+e{CONSONANT}$ ||| ɛ
+
+b$ ||| Ø
+c$ ||| Ø
+d$ ||| Ø
+g$ ||| Ø
+l$ ||| Ø
+p$ ||| Ø
+s$ ||| Ø
+t$ ||| Ø
+x$ ||| Ø
+z$ ||| Ø
+e$ ||| Ø
+o$ ||| o
+
+# PATTERNS
+euille ||| œj
+ouille ||| uj
+
+aille ||| aj
+ueill ||| œj
+uille ||| ɥij
+eille ||| ɛj
+
+ouil ||| uj
+ueil ||| œj
+œill ||| œj
+oign ||| waɲ
+euil ||| œj
+{VOWEL}ill ||| j
+
+oïn ||| oɛ̃
+uil ||| ɥij
+œil ||| œj
+ill ||| ij
+eil ||| ɛj
+cqu ||| k
+ail ||| aj
+aïe ||| ɛ
+aou ||| u
+eau ||| o
+euz ||| Ø
+oie ||| waœ
+esy ||| ɛz
+e{CONSONANT}{CONSONANT} ||| ɛ
+um{CONSONANT} ||| œ̃
+un{CONSONANT} ||| œ̃
+ym{CONSONANT} ||| ɛ̃
+yn{CONSONANT} ||| ɛ̃
+ge{VOWEL} ||| ʒ
+ou{VOWEL} ||| w
+ti{VOWEL} ||| sj
+cc{VOWEL} ||| ks
+xc{VOWEL} ||| ks
+sc{VOWEL} ||| s
+gg{VOWEL} ||| gz
+{VOWEL}il ||| j
+{VOWEL}s{VOWEL} ||| z
+
+bb ||| b
+cc ||| k
+ce ||| s
+ci ||| s
+cy ||| s
+ch ||| ʃ
+c{VOCELESS} ||| ks
+dd ||| d
+ff ||| f
+qu ||| k
+gu ||| g
+gg ||| g
+gi ||| ʒ
+gy ||| ʒ
+gn ||| ɲ
+ll ||| l
+mm ||| m
+nn ||| n
+ng ||| ŋ
+pp ||| p
+ph ||| f
+rr ||| ʁ
+ss ||| s
+tt ||| t
+th ||| t
+il ||| il
+ai ||| ɛ e
+aî ||| ɛ
+aï ||| ai
+au ||| o
+ay ||| ɛj
+ée ||| e
+ex ||| ɛgz
+ei ||| ɛ̃
+eî ||| ɛ
+eu ||| œ
+eû ||| Ø
+oe ||| oe
+oi ||| wa
+oï ||| oi
+ou ||| u
+oy ||| waj
+u{VOWEL} ||| ɥ
+i{VOWEL} ||| j
+
+xc ||| ksk
+
+# VOWELS
+a ||| a
+à ||| a
+â ||| ɑ
+e ||| ə
+é ||| e
+è ||| ɛ
+ê ||| ɛ
+i ||| i
+o ||| ɔ
+ô ||| o
+ë ||| œ
+u ||| y
+ 
+# CONSONANTS
+b ||| b
+ç ||| s
+c ||| k
+d ||| d
+f ||| f
+g ||| g
+h ||| Ø
+j ||| ʒ
+k ||| k
+l ||| l
+m ||| m
+n ||| n
+p ||| p
+q ||| k
+r ||| ʁ
+s ||| s
+t ||| t
+v ||| v
+w ||| v w
+x ||| gz
+y ||| j i
+z ||| z
+
+# mapping is based on http://www.omniglot.com/writing/french.htm and http://en.wikipedia.org/wiki/Frenchorthography#Soundtospellingcorrespondences

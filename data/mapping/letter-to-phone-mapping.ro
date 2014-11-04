@@ -1,0 +1,127 @@
+# Syntax:
+# Comments start with a pound (#) character.
+#
+# The rules have top-down precedence !!!not recursive!!!
+# Once a substring is matched and consumed other matchers won't consume it.
+# However, this substring can still be matched using .V. and .C. matchers.
+#
+# Simple case:
+#   <in_str> ||| <out_str1> <out_str2> ...
+#   The <in_str> is consumed.
+#   <out_strX> can be "Ø" - deletion.
+#
+# Special matchers - not consuming the anchor characters:
+# Suffixes:
+#   <in_str>$ ||| <out_str1> ...
+#   <in_str> will only be matched if it at the end of the word.
+#
+# Prefixes:
+#   ^<in_str> ||| <out_str1> ...
+#   <in_str> will only be matched if it at the start of the word.
+#
+# Definition of a set:
+# def <NAME> = {char1, char2, ...}
+#
+# Matching:
+#   <in_str>{VAR} ||| <out_str1> ...
+#   {VAR}<in_str> ||| <out_str1> ...
+#   <in_str> will only be matched in a presence of a character from set VAR. Only the <in_str> is consumed.
+
+def CONSONANT = bcdfghjklmnpqrsșşţțvwxyz
+def VOWEL = aăâiîoue
+
+iii$ ||| iji
+ii$ ||| i
+
+eai ||| e̯ai̯
+eau ||| e̯au̯
+eoa ||| e̯oa
+iai ||| i̯a
+iau ||| i̯au̯
+ioa ||| i̯oa
+oai ||| o̯ai̯
+
+ai ||| ai̯
+ăi ||| əi̯
+au ||| au̯
+ău ||| əu̯
+ei ||| e̯i̯ i̯e̯i̯
+eu ||| e̯u̯ i̯e̯u̯
+eo ||| e̯o
+ia ||| i̯a
+ie ||| i̯e
+io ||| i̯o
+iu ||| i̯u
+îi ||| ɨi̯
+iu ||| iu̯
+îu ||| ɨu̯
+oa ||| o̯a
+oi ||| oi̯
+ou ||| ou̯
+ua ||| u̯a
+uă ||| u̯ə
+ui ||| ui̯
+uu ||| uu̯
+
+# c = tʃ before i or e, but k elsewhere
+ci ||| tʃi
+ce ||| tʃe
+
+# g = dʒ before i or e, but g elsewhere
+gi ||| dʒi
+ge ||| dʒe
+
+# ch = k before i or e
+chi ||| ki
+che ||| ke
+
+# gh = h before i or e
+ghi ||| hi
+ghe ||| he
+
+# u is u̯ before vowels but u elswhere
+u{VOWEL} ||| u̯
+# i = i̯ before vowels, but i elsewhere.
+i{VOWEL} ||| i̯
+
+# Vowels
+a ||| a
+i ||| i
+o ||| o o̯
+u ||| u
+ă ||| ə
+â ||| ɨ
+e ||| e e̯ je
+î ||| ɨ
+
+# Consonants
+b ||| b
+c ||| k
+d ||| d
+f ||| f
+g ||| g
+h ||| h Ø
+j ||| ʒ
+k ||| k
+l ||| l
+m ||| m
+n ||| n
+p ||| p
+q ||| k
+r ||| r
+s ||| s
+ș ||| ʃ
+ş ||| ʃ
+t ||| t
+ţ ||| ts
+ț ||| ts
+v ||| v
+w ||| v w u
+x ||| ks gz
+y ||| j i
+z ||| z
+
+#  At the end of the multi-syllable word it's not pronounced but palatalizes the preceeding consonant; except r+consonant+i. 
+# k, q, w only appear in loanwords
+
+# mapping is based on http://www.omniglot.com/writing/romanian.htm and http://en.wikipedia.org/wiki/Romanian_alphabet
