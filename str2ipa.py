@@ -22,6 +22,7 @@ if __name__ == '__main__':
   parser.add_argument('--in_vocab')
   parser.add_argument('--out_pron_dict')
   parser.add_argument('--debug_match', action='store_true')
+  parser.add_argument('--ignore_errors', action='store_true')
   args = parser.parse_args()
 
 EMPTY_CHAR = "Ø"
@@ -139,7 +140,7 @@ class IpaMapper(object):
     self.defined_vars[name] = list(set_str)
     print("Defined rule name:", name, "values:", set_str)
 
-  def ConvertWord(self, s, debug_match=False, ignore_errors=True):
+  def ConvertWord(self, s, debug_match=False, ignore_errors=False):
     """Given a word (single words only) returns a list of all pronunciations (no space between phones)."""
     assert("$" not in s)
     assert("^" not in s)
@@ -153,8 +154,8 @@ class IpaMapper(object):
     # Mark start and end chars as consumed.
     mask[0] = True
     mask[-1] = True
-    if False in mask:
-      assert ignore_errors, "Not rules matched for: {}, mask: {}".format(s, mask)
+    if False in mask and not ignore_errors:
+      print("No rules matched for: {}, mask: {}".format(s, mask))
     
     out_str_lists = []
     for elem in mask:
@@ -174,11 +175,12 @@ class IpaMapper(object):
     return out_strs
 
 
-def IpaSplit(word, ignore_errors=True):
+def IpaSplit(word, ignore_errors=False):
   result = []
   for i, c in enumerate(word):
     category = unicodedata.category(c)
     if category == "Mn":
+      assert len(result) > 0, "Unexpected accent before letter for char: {} in word: {}, len(word): {}".format(c, word, len(word))
       result[-1] = result[-1] + c
     else:
       if category not in {"Ll", "Lu"}:
@@ -193,7 +195,7 @@ def main():
     # Only take the first token from each line.
     word = line.split()[0]
     if word not in phone_dict:
-      out_pron_list = ipa_mapper.ConvertWord(word, debug_match=args.debug_match, ignore_errors=True)
+      out_pron_list = ipa_mapper.ConvertWord(word, debug_match=args.debug_match, ignore_errors=args.ignore_errors)
       if out_pron_list:
         phone_dict[word] = set(out_pron_list)
 
@@ -201,6 +203,6 @@ def main():
     for word in sorted(phone_dict):
       for pron in sorted(phone_dict[word]):
         out_file.write("{} ||| {}\n".format(word, " ".join(IpaSplit(pron, ignore_errors=False))))
-  
+
 if __name__ == '__main__':
   main()

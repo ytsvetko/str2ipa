@@ -1,0 +1,105 @@
+# Syntax:
+# Comments start with a pound (#) character.
+#
+# The rules have top-down precedence !!!not recursive!!!
+# Once a substring is matched and consumed other matchers won't consume it.
+# However, this substring can still be matched using .V. and .C. matchers.
+#
+# Simple case:
+#   <in_str> ||| <out_str1> <out_str2> ...
+#   The <in_str> is consumed.
+#   <out_strX> can be "Ø" - deletion.
+#
+# Special matchers - not consuming the anchor characters:
+# Suffixes:
+#   <in_str>$ ||| <out_str1> ...
+#   <in_str> will only be matched if it at the end of the word.
+#
+# Prefixes:
+#   ^<in_str> ||| <out_str1> ...
+#   <in_str> will only be matched if it at the start of the word.
+#
+# Definition of a set:
+# def <NAME> = {char1, char2, ...}
+#
+# Matching:
+#   <in_str>{VAR} ||| <out_str1> ...
+#   {VAR}<in_str> ||| <out_str1> ...
+#   <in_str> will only be matched in a presence of a character from set VAR. Only the <in_str> is consumed.
+
+def CONSONANT = bdfghjklmnprsṣtvwy
+def VOWEL = aeẹioọuáéẹ́íóọ́úàèẹ̀ìòọ̀ù
+def NASAL = nm
+def SONORANT = lrwyh
+
+# k/g and p/b are pronounced simultaneously
+gb ||| ɡ͡b
+p ||| k͡p
+
+# nasal vowels 
+an ||| ã
+ẹn ||| ɛ̃
+in ||| ĩ
+ọn ||| ɔ̃
+un ||| ũ
+
+nẹ ||| ɛ̃
+ni ||| ĩ
+nọ ||| ɔ̃ ã
+nu ||| ũ
+mẹ ||| ɛ̃
+mi ||| ĩ
+mọ ||| ɔ̃
+mu ||| ũ
+
+# syllabic nasal
+n{VOWEL} ||| ŋ
+ń{CONSONANT} ||| ń
+ǹ{CONSONANT} ||| ǹ
+
+# Vowels, tones (remove IPA tones?)
+á ||| á
+é ||| é
+ẹ́ ||| ɛ́
+í ||| í
+ó ||| ó
+ọ́ ||| ɔ́
+ú ||| ú
+
+à ||| à
+è ||| è
+ẹ̀ ||| ɛ̀
+ì ||| ì
+ò ||| ò
+ọ̀ ||| ɔ̀
+ù ||| ù
+
+a ||| a
+e ||| e
+ẹ ||| ɛ
+i ||| i
+o ||| o
+ọ ||| ɔ
+u ||| u
+
+# Consonants
+b ||| b
+d ||| d
+f ||| f
+g ||| g
+h ||| h
+j ||| ɟ
+k ||| k
+l ||| l
+m ||| m
+n ||| n
+q ||| k
+r ||| r
+s ||| s
+ṣ ||| ʃ
+t ||| t
+v ||| ʋ
+y ||| j
+w ||| w
+
+# mapping is based on http://www.omniglot.com/writing/yoruba.htm andhttp://en.wikipedia.org/wiki/Yoruba_language
