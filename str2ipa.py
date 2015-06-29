@@ -183,7 +183,7 @@ def IpaSplit(word, ignore_errors=False):
       assert len(result) > 0, "Unexpected accent before letter for char: {} in word: {}, len(word): {}".format(c, word, len(word))
       result[-1] = result[-1] + c
     else:
-      if category not in {"Ll", "Lu", "Lm"}:
+      if category not in {"Ll", "Lu", "Lm", "Pd"}:
         assert ignore_errors, "Unexpected unicode category for char: {} in word: {}".format(c, word)
       result.append(c)
   return result
@@ -192,12 +192,16 @@ def main():
   ipa_mapper = IpaMapper(args.mapping_file)
   phone_dict = {}
   for line in open(args.in_vocab):
-    # Only take the first token from each line.
-    word = line.split()[0]
+    if " ||| " in line:
+      surface, word = line.strip().split(" ||| ")
+    else:
+      # Only take the first token from each line.
+      word = line.split()[0]
+      surface = word
     if word not in phone_dict:
       out_pron_list = ipa_mapper.ConvertWord(word, debug_match=args.debug_match, ignore_errors=args.ignore_errors)
       if out_pron_list:
-        phone_dict[word] = set(out_pron_list)
+        phone_dict[surface] = set(out_pron_list)
 
   with open(args.out_pron_dict, "w") as out_file:
     for word in sorted(phone_dict):
