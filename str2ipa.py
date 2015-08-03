@@ -183,7 +183,7 @@ def IpaSplit(word, ignore_errors=False):
       assert len(result) > 0, "Unexpected accent before letter for char: {} in word: {}, len(word): {}".format(c, word, len(word))
       result[-1] = result[-1] + c
     else:
-      if category not in {"Ll", "Lu", "Lm", "Pd"}:
+      if category not in {"Ll", "Lu", "Lm", "Pd", "Lo"}:
         assert ignore_errors, "Unexpected unicode category for char: {} in word: {}".format(c, word)
       result.append(c)
   return result
