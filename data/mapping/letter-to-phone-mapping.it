@@ -1,0 +1,127 @@
+# Syntax:
+# Comments start with a pound (#) character.
+#
+# The rules have top-down precedence !!!not recursive!!!
+# Once a substring is matched and consumed other matchers won't consume it.
+# However, this substring can still be matched using .V. and .C. matchers.
+#
+# Simple case:
+#   <in_str> ||| <out_str1> <out_str2> ...
+#   The <in_str> is consumed.
+#   <out_strX> can be "Ø" - deletion.
+#
+# Special matchers - not consuming the anchor characters:
+# Suffixes:
+#   <in_str>$ ||| <out_str1> ...
+#   <in_str> will only be matched if it at the end of the word.
+#
+# Prefixes:
+#   ^<in_str> ||| <out_str1> ...
+#   <in_str> will only be matched if it at the start of the word.
+#
+# Definition of a set:
+# def <NAME> = {char1, char2, ...}
+#
+# Matching:
+#   <in_str>{VAR} ||| <out_str1> ...
+#   {VAR}<in_str> ||| <out_str1> ...
+#   <in_str> will only be matched in a presence of a character from set VAR. Only the <in_str> is consumed.
+
+
+def CONSONANT = bcdfghjklmnpqrstvwxyz
+def VOWEL = aeiouèéòó
+def NASAL = mn
+def STOP = pbtdkg
+def AFFRICATE = zgzc
+def FRICATIVE = fvsz #sc #ts
+def TRILL = r #gl
+def APPROXIMANT = ui
+def LIQUID = lrjw
+
+# Diphthongs
+ai ||| ai
+au ||| au
+ei  ||| ei
+eu ||| eu
+ie ||| jɛ
+oi ||| oi
+uo ||| wɔ
+
+# stressed vowels
+è ||| ɛ
+é ||| e
+ò ||| ɔ
+ó ||| o
+
+# c
+ce ||| tʃe
+ci ||| tʃi
+cc |||  k tʃ
+ch ||| k
+sci ||| ʃi
+sce ||| ʃe
+schi ||| ski
+sche ||| ske
+sc ||| sk
+c ||| k
+
+# g
+gi ||| dʒi
+ge ||| dʒe
+gh ||| g
+gli ||| ʎ
+gl ||| gl
+gg ||| g dʒ
+gn ||| ɲ
+g ||| g
+
+# s
+{VOWEL}s{VOWEL} ||| z
+s ||| s
+
+# Vowels
+a ||| a
+e ||| ɛ e
+i ||| i j
+o ||| o ɔ
+u ||| u 
+y ||| i j 
+
+# Consonants
+bb ||| b
+b ||| b
+dd ||| d
+d ||| d
+zz ||| dz
+z ||| dz
+ff ||| f
+f ||| f
+qq ||| k
+q ||| k
+ll ||| l
+l ||| l
+mm ||| m
+m ||| m
+ng ||| ɲ
+nk ||| ɲ
+nn ||| n 
+n ||| n
+pp ||| p
+p ||| p
+rr ||| r
+r ||| r
+tt ||| t
+t ||| t
+zz ||| ts
+z ||| ts
+vv ||| v
+v ||| v
+ww ||| w
+w ||| w
+kk ||| k
+k ||| k
+x ||| ks
+h ||| Ø
+j ||| dz
+
+# mapping is based on http://www.omniglot.com/writing/italian.htm  https://en.wikipedia.org/wiki/Italian_phonology https://en.wikipedia.org/wiki/Help:IPA_for_Italian
