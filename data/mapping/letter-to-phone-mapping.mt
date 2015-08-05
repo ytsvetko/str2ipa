@@ -80,10 +80,10 @@ u ||| ʊ uː
 
 # Consonants
 b ||| b
-ċ ||| t͡ʃ
+ċ ||| tʃ
 d ||| d
 f ||| f
-ġ ||| d͡ʒ
+ġ ||| dʒ
 g ||| g
 ħ ||| ħ
 h ||| Ø
@@ -101,6 +101,6 @@ v ||| v
 w ||| w
 x ||| ʃ
 ż ||| z
-z ||| t͡s d͡z
+z ||| ts dz
 
 # mapping is based on http://www.omniglot.com/writing/maltese.htm  https://en.wikipedia.org/wiki/Maltese_language https://en.wikipedia.org/wiki/Help:IPA_for_Maltese
