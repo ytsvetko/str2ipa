@@ -47,25 +47,21 @@ ie ||| jɛ
 oi ||| oi
 uo ||| wɔ
 
-# stressed vowels
-è ||| ɛ
-é ||| e
-ò ||| ɔ
-ó ||| o
-
 # c
-ce ||| tʃe
-ci ||| tʃi
-cc |||  k tʃ
-ch ||| k
 sci ||| ʃi
 sce ||| ʃe
 schi ||| ski
 sche ||| ske
+ce ||| tʃe
+ci ||| tʃi
+cc |||  k tʃ
+ch ||| k
 sc ||| sk
 c ||| k
 
 # g
+ng ||| ɲ
+nk ||| ɲ
 gi ||| dʒi
 ge ||| dʒe
 gh ||| g
@@ -77,7 +73,14 @@ g ||| g
 
 # s
 {VOWEL}s{VOWEL} ||| z
+ss ||| s
 s ||| s
+
+# stressed vowels
+è ||| ɛ
+é ||| e
+ò ||| ɔ
+ó ||| o
 
 # Vowels
 a ||| a
@@ -102,8 +105,6 @@ ll ||| l
 l ||| l
 mm ||| m
 m ||| m
-ng ||| ɲ
-nk ||| ɲ
 nn ||| n 
 n ||| n
 pp ||| p
@@ -112,8 +113,6 @@ rr ||| r
 r ||| r
 tt ||| t
 t ||| t
-zz ||| ts
-z ||| ts
 vv ||| v
 v ||| v
 ww ||| w
