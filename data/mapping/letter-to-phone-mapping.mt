@@ -72,16 +72,18 @@ għ ||| Ø
 # Vowels
 a ||| ɐ
 eh ||| ɛː
-e ||| ɛ
 ie ||| iː iɛ
+e ||| ɛ
 i ||| i
 o ||| ɔ
 u ||| ʊ uː
 
 # Consonants
+bb ||| b
 b ||| b
 ċ ||| tʃ
 d ||| d
+ff ||| f
 f ||| f
 ġ ||| dʒ
 g ||| g
@@ -89,13 +91,16 @@ g ||| g
 h ||| Ø
 j ||| j
 k ||| k
+ll ||| l
 l ||| l
 m ||| m
 n ||| n
 p ||| p
 q ||| ʔ
 r ||| r
+ss ||| s
 s ||| s
+tt ||| t
 t ||| t
 v ||| v
 w ||| w
